@@ -1,0 +1,41 @@
+{% extends "feed/layout.html" %} {% load static %} {% load crispy_forms_tags %} {% load socialaccount %}
+{% block cssfiles %} {% endblock cssfiles %} {% block content %}
+<br />
+<div class="container">
+	<div class="row">
+		<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+			<div class="card card-signin my-5">
+				<div class="card-body">
+					<h5 class="card-title text-center"><b>Sign In</b></h5>
+					<form class="form-signin" method="POST">
+						{% csrf_token %}
+						<a href="{% provider_login_url 'google' %}" class="btn btn-lg btn-google btn-block text-uppercase btn-outline" style="color: #545454; background-color: #ffffff;">
+        					<img src="https://img.icons8.com/color/16/000000/google-logo.png"> Login with Google
+      					</a>
+      					<hr class="hr-text" data-content="OR">
+						<fieldset class="form-group">
+							<br/>
+							{{ form|crispy }}
+						</fieldset>
+						<div class="form-group">
+							<button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">
+								Login
+							</button>
+							<br/><br/>
+							<a class="btn btn-lg btn-warning btn-block text-uppercase" href="{% url 'password_reset' %}">
+								Forgot Password?
+							</a>
+						</div>
+						<small>
+							<p class="text-center">
+								Not registered yet!
+								<a href="{% url 'register' %}"><b>Register Now!</b></a>
+							</p>
+						</small>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}
